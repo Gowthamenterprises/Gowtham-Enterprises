@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- This meta tag tells browsers to automatically scale the website to fit the device screen perfectly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gowtham Enterprises</title>
     
@@ -16,15 +17,15 @@
     <style>
         :root {
             /* Premium Light Green Theme Canvas */
-            --body-bg: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 40%, #bbf7d0 100%); /* Radiant Light Mint & Lime Green */
-            --main-board-bg: rgba(6, 78, 59, 0.95);                                   /* Rich Deep Forest Green Glass */
+            --body-bg: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 40%, #bbf7d0 100%); 
+            --main-board-bg: rgba(6, 78, 59, 0.95);                                   
             
             /* High Contrast Colors */
-            --vibrant-yellow: #facc15;                 /* Bright Canary Yellow for Headers */
-            --soft-yellow: #fef08a;                    /* Pastel Yellow for Content Readability */
-            --pure-white: #ffffff;                     /* Clean White */
-            --deep-gold: #eab308;                      /* Accent Gold for Icons */
-            --alert-red: #f87171;                      /* Pastel Red for Closures */
+            --vibrant-yellow: #facc15;                 
+            --soft-yellow: #fef08a;                    
+            --pure-white: #ffffff;                     
+            --deep-gold: #eab308;                      
+            --alert-red: #f87171;                      
             --glass-panel: rgba(255, 255, 255, 0.04);
             --border-glow: rgba(250, 204, 21, 0.25);
         }
@@ -45,9 +46,10 @@
             padding: 50px 20px;
         }
 
-        /* Interactive Card Container */
+        /* Fluid Main Container that shrinks neatly on smaller screens */
         .main-board {
             max-width: 1050px;
+            width: 100%;
             margin: 0 auto;
             background: var(--main-board-bg);
             padding: 55px 45px;
@@ -59,31 +61,31 @@
             position: relative;
         }
 
-        /* Heading Configuration */
+        /* Heading Auto-scaling settings */
         header {
             text-align: center;
             margin-bottom: 40px;
         }
 
         header h1 {
-            font-size: 3.8rem;
+            font-size: clamp(2.2rem, 5vw, 3.8rem); /* Automatically adjusts title size smoothly based on device width */
             font-weight: 800;
             color: var(--vibrant-yellow);
             letter-spacing: -0.5px;
             text-transform: uppercase;
             text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            line-height: 1.2;
         }
 
-        /* Golden Ribbon Divider Line */
         .color-bar {
             height: 4px;
-            width: 180px;
+            width: 140px;
             background: linear-gradient(90deg, var(--deep-gold), var(--vibrant-yellow), var(--deep-gold));
             margin: 15px auto 0;
             border-radius: 10px;
         }
 
-        /* Thirukural Panel */
+        /* Responsive Thirukural Card */
         .thirukural-card {
             background: var(--glass-panel);
             border: 1px solid rgba(250, 204, 21, 0.15);
@@ -92,12 +94,11 @@
             margin-bottom: 45px;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         .kural-ta {
             font-family: 'Playfair Display', serif;
-            font-size: 1.45rem;
+            font-size: clamp(1.1rem, 3vw, 1.45rem);
             font-weight: 700;
             color: var(--vibrant-yellow);
             line-height: 1.8;
@@ -105,7 +106,7 @@
         }
 
         .kural-eng {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             color: var(--pure-white);
             font-style: italic;
             opacity: 0.9;
@@ -120,25 +121,15 @@
             font-weight: 700;
         }
 
-        /* Core Structure Layout Grid */
+        /* The Core Responsive Grid System */
         .grid-matrix {
             display: grid;
-            grid-template-columns: 1.25fr 1fr;
-            gap: 45px;
+            grid-template-columns: 1.25fr 1fr; /* 2 columns on Desktop screens */
+            gap: 40px;
         }
 
-        @media (max-width: 768px) {
-            .grid-matrix {
-                grid-template-columns: 1fr;
-            }
-            header h1 {
-                font-size: 2.5rem;
-            }
-        }
-
-        /* Left Side Service Styles */
         .services-panel h2 {
-            font-size: 1.45rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.45rem);
             font-weight: 800;
             color: var(--vibrant-yellow);
             margin-bottom: 25px;
@@ -152,7 +143,7 @@
         }
 
         .services-list li {
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
             font-weight: 600;
             color: var(--pure-white);
             padding: 16px 20px;
@@ -165,10 +156,8 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* Vibrant Yellow Icons */
         .services-list li i {
-            font-size: 1.15rem;
-            color: var(--vibrant-yellow);
+            font-size: 1.1rem;
             width: 36px;
             height: 36px;
             background: rgba(250, 204, 21, 0.12);
@@ -177,10 +166,10 @@
             align-items: center;
             justify-content: center;
             margin-right: 16px;
+            flex-shrink: 0; /* Prevents icons from squishing on tiny phones */
             transition: all 0.3s ease;
         }
 
-        /* Interactive Service Block Hover Animation */
         .services-list li:hover {
             background: rgba(250, 204, 21, 0.08);
             border-color: rgba(250, 204, 21, 0.4);
@@ -194,7 +183,6 @@
             transform: rotate(15deg) scale(1.1);
         }
 
-        /* Right Side Panels (Sidebar) */
         .sidebar-panel {
             display: flex;
             flex-direction: column;
@@ -221,7 +209,6 @@
             padding-bottom: 8px;
         }
 
-        /* Live Status Pulse Graphic */
         .live-dot {
             width: 8px;
             height: 8px;
@@ -241,16 +228,13 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
         }
 
-        /* Contact Box Rows */
         .contact-row {
             display: flex;
             align-items: flex-start;
             margin-bottom: 20px;
         }
 
-        .contact-row:last-child {
-            margin-bottom: 0;
-        }
+        .contact-row:last-child { margin-bottom: 0; }
 
         .contact-row i {
             font-size: 1.25rem;
@@ -259,6 +243,7 @@
             margin-right: 15px;
             width: 20px;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .contact-label-tag {
@@ -274,12 +259,10 @@
             font-size: 1.15rem;
             color: var(--pure-white);
             font-weight: 700;
+            word-break: break-all; /* Prevents long emails from overflowing screen edges */
         }
 
-        /* Timings List */
-        .timing-rows {
-            list-style: none;
-        }
+        .timing-rows { list-style: none; }
 
         .timing-rows li {
             font-size: 0.98rem;
@@ -291,21 +274,13 @@
             align-items: flex-start;
         }
 
-        .timing-rows li:last-child {
-            margin-bottom: 0;
-        }
-
-        .timing-rows li i {
-            margin-top: 4px;
-            font-size: 1rem;
-        }
-
+        .timing-rows li:last-child { margin-bottom: 0; }
+        .timing-rows li i { margin-top: 4px; font-size: 1rem; flex-shrink: 0; }
         .timing-rows li.status-open i { color: #34d399; }
         .timing-rows li.status-variable i { color: var(--vibrant-yellow); }
         .timing-rows li.status-closed { color: var(--alert-red); }
         .timing-rows li.status-closed i { color: var(--alert-red); }
 
-        /* Footer Location Banner */
         .location-banner {
             margin-top: 50px;
             padding: 30px;
@@ -320,18 +295,50 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
-        .location-banner i {
-            font-size: 1.5rem;
-            color: var(--vibrant-yellow);
-        }
+        .location-banner i { font-size: 1.5rem; color: var(--vibrant-yellow); flex-shrink: 0; }
 
         .address-details-text {
             color: var(--soft-yellow);
-            font-size: 1.15rem;
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
             font-weight: 700;
             line-height: 1.7;
             text-align: center;
             letter-spacing: 0.3px;
+        }
+
+        /* ---------------------------------------------------- */
+        /* AUTOMATIC AUTO-SWITCH SCREEN CONTROLS (Media Queries)*/
+        /* ---------------------------------------------------- */
+
+        /* Tablet View Mode (Screens under 992px wide) */
+        @media (max-width: 992px) {
+            .grid-matrix {
+                grid-template-columns: 1fr; /* Switch side-by-side grid into a clean vertical flow */
+                gap: 30px;
+            }
+            .main-board {
+                padding: 40px 30px; /* Reduce container inner padding slightly */
+            }
+        }
+
+        /* Mobile Phone View Mode (Screens under 576px wide) */
+        @media (max-width: 576px) {
+            body {
+                padding: 20px 10px; /* Thinner page margin edges for tight smartphone views */
+            }
+            .main-board {
+                padding: 30px 18px; /* Clean internal structure borders for mobile view */
+                border-radius: 20px;
+            }
+            .location-banner {
+                flex-direction: column; /* Moves map location icon directly on top of text on phones */
+                text-align: center;
+                padding: 20px 15px;
+            }
+            .live-dot {
+                right: 20px;
+                top: 28px;
+            }
         }
     </style>
 </head>
@@ -368,7 +375,7 @@
                 </ul>
             </div>
 
-            <!-- Right Side Interactive Side Cards -->
+            <!-- Right Side Side Cards -->
             <div class="sidebar-panel">
                 
                 <div class="info-card-block contact-box">
